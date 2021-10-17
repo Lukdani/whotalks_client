@@ -8,7 +8,7 @@ module.exports = {
     filename: "js/bundle.js",
   },
   devServer: {
-    contentBase: "./dist",
+    static: "./dist",
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -24,6 +24,10 @@ module.exports = {
         use: {
           loader: "babel-loader",
         },
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },

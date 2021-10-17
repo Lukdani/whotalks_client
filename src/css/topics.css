@@ -1,0 +1,47 @@
+.topicContainer {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.topic-argument-list {
+  list-style: none;
+  padding: 0 0.5rem;
+}
+
+.topic-argument-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+  background-color: lightgray;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  border-radius: 0.25rem;
+}
+
+.topic-argument-item svg {
+  font-size: 4rem;
+}
+
+.topic-argument-item > .for {
+  color: green;
+}
+
+.topic-argument-item > .against {
+  color: red;
+}
+
+.votes-container {
+  display: flex;
+}
+
+.votes-item-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.5rem;
+  font-size: 2rem;
+  color: gray;
+  border-radius: 0.5rem;
+}

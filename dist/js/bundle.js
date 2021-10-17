@@ -9,14 +9,14 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/hello-world.js":
-/*!****************************!*\
-  !*** ./src/hello-world.js ***!
-  \****************************/
+/***/ "./src/js/TopicController/TopicController.js":
+/*!***************************************************!*\
+  !*** ./src/js/TopicController/TopicController.js ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _js_utils_createElement_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/utils/createElement.js */ \"./src/js/utils/createElement.js\");\n\n\nconst fetchTopics = async () => {\n  const topics = await (await fetch(\"http://localhost:3000/api/v1/topics\")).json();\n\n  console.log(topics.data);\n  if (topics.data.length > 0) {\n    topics.data.forEach(element => {\n      console.log(element.title);\n      const createdHeader = (0,_js_utils_createElement_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(\"h3\", null, null);\n      createdHeader.textContent = element.title;\n      document.getElementById(\"topics\").appendChild(createdHeader);\n    });\n  }\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (fetchTopics);\n\n//# sourceURL=webpack://whotalks_client/./src/hello-world.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nclass TopicController {\n  constructor(topicModel, topicView) {\n    this.topicModel = topicModel;\n    this.topicView = topicView;\n\n    this.fetchTopics();\n  }\n\n  async fetchTopics() {\n    const topics = await (await fetch(\"http://localhost:3000/api/v1/topics\")).json();\n\n    if (topics.data.length > 0) {\n      console.log(topics.data);\n      this.topicModel.setTopics(topics.data);\n      this.topicView.addTopics(this.topicModel.data.topics);\n    }\n  }\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TopicController);\n\n//# sourceURL=webpack://whotalks_client/./src/js/TopicController/TopicController.js?");
 
 /***/ }),
 
@@ -27,7 +27,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hello_world_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hello-world.js */ \"./src/hello-world.js\");\n\n\n//fetchTopics = require(\"./hello-world.js\");\n\nconsole.log(_hello_world_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\nif (_hello_world_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]) (0,_hello_world_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n//# sourceURL=webpack://whotalks_client/./src/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _models_TopicModel_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./models/TopicModel.js */ \"./src/js/models/TopicModel.js\");\n/* harmony import */ var _TopicController_TopicController_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TopicController/TopicController.js */ \"./src/js/TopicController/TopicController.js\");\n/* harmony import */ var _views_TopicView_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/TopicView.js */ \"./src/js/views/TopicView.js\");\n\n\n\n\nconst rootElement = document.getElementById(\"topics\");\n\nconst topicModel = new _models_TopicModel_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\nconst topicView = new _views_TopicView_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"](rootElement);\n\nnew _TopicController_TopicController_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"](topicModel, topicView);\n\n//# sourceURL=webpack://whotalks_client/./src/js/index.js?");
+
+/***/ }),
+
+/***/ "./src/js/models/TopicModel.js":
+/*!*************************************!*\
+  !*** ./src/js/models/TopicModel.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nclass TopicModel {\n  constructor() {\n    this.data = { topics: [] };\n  }\n\n  setTopics(topics) {\n    this.data.topics = topics;\n  }\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TopicModel);\n\n//# sourceURL=webpack://whotalks_client/./src/js/models/TopicModel.js?");
 
 /***/ }),
 
@@ -39,6 +50,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hel
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst createElement = (tag, classes, id) => {\n  let element = document.createElement(tag);\n\n  if (classes && classes.length > 0) {\n    classes.forEach(classElement => {\n      element.classList.add(classElement);\n    });\n  }\n\n  if (id) element.setAttribute(\"id\", id);\n\n  return element;\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createElement);\n\n//# sourceURL=webpack://whotalks_client/./src/js/utils/createElement.js?");
+
+/***/ }),
+
+/***/ "./src/js/views/TopicView.js":
+/*!***********************************!*\
+  !*** ./src/js/views/TopicView.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _utils_createElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/createElement */ \"./src/js/utils/createElement.js\");\n\n\nclass TopicView {\n  constructor(rootElement) {\n    this.rootElement = rootElement;\n  }\n  addTopics(topics) {\n    if (topics && topics.length > 0) {\n      topics.forEach(topicElement => {\n        // CONTAINER\n        const topicContainer = (0,_utils_createElement__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(\"div\", [\"topicContainer\"], null);\n        topicContainer.setAttribute(\"data-topic\", topicElement._id);\n        this.rootElement.appendChild(topicContainer);\n\n        // HEADER\n        const topicHeader = (0,_utils_createElement__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(\"h2\", null, null);\n        topicHeader.textContent = topicElement.title;\n        topicHeader.topicContainer.appendChild(topicHeader);\n\n        // BODY\n        const topicDescription = (0,_utils_createElement__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(\"p\", null, null);\n        topicDescription.textContent = topicElement.description;\n        console.log(topicContainer);\n        topicContainer.appendChild(topicDescription);\n\n        // ARGUMENTS;\n        const topicArguments = (0,_utils_createElement__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(\"div\", [\"topic-arguments-container\", null]);\n        topicContainer.appendChild(topicArguments);\n\n        const argumentsFor = (0,_utils_createElement__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(\"div\", [\"topic-arguments\", \"topic-arguments-for\"]);\n        if (topicElement.argumentsFor && topics.argumentsFor.length > 0) {\n          renderArguments(topicElement.argumentsFor, argumentsFor);\n        }\n\n        // PERSPECTIVE;\n        const argumentsAgainst = (0,_utils_createElement__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(\"div\", [\"topic-arguments\", \"topic-arguments-against\"]);\n        if (topicElement.argumentsAgainst && topics.argumentsAgainst.length > 0) {\n          renderArguments(topicElement.argumentsAgainst, argumentsAgainst);\n        }\n\n        const perspective = (0,_utils_createElement__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(\"p\", [\"topic-perspective\", null]);\n        perspective.textContent = topicElement.perspective;\n        topicContainer.appendChild(perspective);\n      });\n    }\n  }\n\n  renderArguments(passedArguments, containerElement) {\n    const argumentsUl = (0,_utils_createElement__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(\"ul\", [\"topic-argument-list\"], null);\n    containerElement.appendChild(argumentsUl);\n\n    passedArguments.forEach(argumentElement => {\n      const argument = (0,_utils_createElement__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(\"li\", [\"topic-argument-item\"], null);\n      argument.textContent = argumentElement;\n      argumentsUl.appendChild(argument);\n    });\n  }\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TopicView);\n\n//# sourceURL=webpack://whotalks_client/./src/js/views/TopicView.js?");
 
 /***/ }),
 
