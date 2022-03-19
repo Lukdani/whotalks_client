@@ -53,6 +53,7 @@ class LoginController {
   }
 
   async setUser(user, accessToken) {
+    console.log(user);
     if (accessToken) localStorage.setItem("access_token", accessToken);
     this.loginModel.setUser(user);
     this.loginView.setUsername(user);

@@ -45,3 +45,7 @@
   color: gray;
   border-radius: 0.5rem;
 }
+
+.votes-item-button.active {
+  color: blue !important;
+}

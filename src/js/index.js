@@ -23,4 +23,4 @@ new LoginController(loginModel, loginView);
 const topicRoot = document.getElementById("topics");
 const topicModel = new TopicModel();
 const topicView = new TopicView(topicRoot);
-new TopicController(topicModel, topicView);
+new TopicController(topicModel, topicView, loginModel);

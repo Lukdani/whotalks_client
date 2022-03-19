@@ -144,16 +144,51 @@ class TopicView {
     votesItemButton.appendChild(voteCount);
   }
 
-  updateVotes(topicId, votesNumber, downvotesNumber) {
+  updateVotes(topicId, votesNumber, downvotesNumber, hasVoted, hasDownVoted) {
+    // VOTE
     const votesCounter = document.querySelector(
       `button[data-topicId='vote-${topicId}'] span`
     );
-    if (votesCounter) votesCounter.textContent = votesNumber;
-
+    if (votesCounter) {
+      votesCounter.textContent = votesNumber;
+      if (hasVoted) {
+        if (hasDownVoted) votesCounter.classList.add("active");
+      }
+    }
+    // DOWNVOTE
     const downvotesCounter = document.querySelector(
       `button[data-topicId='downvote-${topicId}'] span`
     );
-    if (downvotesCounter) downvotesCounter.textContent = downvotesNumber;
+    if (downvotesCounter) {
+      downvotesCounter.textContent = downvotesNumber;
+    }
+
+    this.updateVoteButtonActiveState(topicId, hasVoted, hasDownVoted);
+  }
+
+  updateVoteButtonActiveState(topicId, hasVoted, hasDownVoted) {
+    console.log(hasVoted);
+    // VOTE;
+    const voteButton = document.querySelector(
+      `button[data-topicId='vote-${topicId}']`
+    );
+    if (hasVoted) {
+      !voteButton.classList.contains("active") &&
+        !voteButton.classList.add("active");
+    } else if (!hasVoted) {
+      voteButton.classList.remove("active");
+    }
+
+    // DOWNVOTE;
+    const downvoteButton = document.querySelector(
+      `button[data-topicId='downvote-${topicId}']`
+    );
+    if (hasDownVoted) {
+      !downvoteButton.classList.contains("active") &&
+        !downvoteButton.classList.add("active");
+    } else if (!hasDownVoted) {
+      downvoteButton.classList.remove("active");
+    }
   }
 
   bindVote(callback) {

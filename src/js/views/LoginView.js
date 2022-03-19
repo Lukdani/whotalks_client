@@ -45,7 +45,6 @@ class LoginView {
   bindLoginSubmit(callback) {
     document.getElementById("loginForm").addEventListener("submit", (e) => {
       e.preventDefault();
-      console.log("CALLED!!!!");
       const loginData = { email: "", password: "" };
       var loginFormData = new FormData(document.querySelector("form"));
       for (var [key, value] of loginFormData.entries()) {

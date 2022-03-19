@@ -4,9 +4,7 @@ const postRequest = async (url, protectedApi, data) => {
   const headersConfig = {};
   if (protectedApi) {
     const accessToken = localStorage.getItem("access_token");
-
     if (accessToken) headersConfig.Authorization = `Bearer ${accessToken}`;
-    console.log(headersConfig);
   }
   try {
     const response = await Axios.post(
@@ -14,7 +12,7 @@ const postRequest = async (url, protectedApi, data) => {
       data || null,
       { headers: headersConfig } || null
     );
-    return response;
+    return response.data ? response.data : response;
   } catch (error) {
     console.log(error);
   }
